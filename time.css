@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.time {
+    font-size: 75px;
+    color:rgb(255, 255, 255);
+
+    font-style: italic;
+    padding-right: 5px;
+    margin-right:5px;
+    margin-left: 5px;
+}
+
+header {
+    background-color: blueviolet;
+    padding: 25px;
+    color: rgb(255, 255, 255);
+}
+
+.task-input {
+    padding: 20px;
+    font-size: 25px;
+    background-color: rgba(137, 43, 226, 0.215);
+}
+
+.time-start {
+    width: 50px;
+    border-width: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 25px;
+    padding: 5px;
+}
+
+.hour-start {
+    text-align: right;
+}
+
+.hour-end {
+    text-align: right;
+}
+
+.time-end {
+    width: 50px;
+    border-width: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 25px;
+    padding: 5px;
+}
+
+.start-input {
+    display: inline;
+    border-width: 0px;
+    border-style: solid;
+    width: 142px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-bottom-width: 1px;
+    background-color:rgba(0, 0, 0, 0);
+    border-color: rgb(109, 109, 109);
+}
+
+
+
+.task-name {
+    border-width: 0px;
+    font-size: 25px;
+    padding: 5px;
+    margin: 5px;
+    border-bottom-width: 1px;
+    background-color:rgb(255, 255, 255, 0);
+    width: 50%;
+}
+
+.btn {
+    font-size: 20px;
+    font-family: inherit;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 0px;
+    background-color: rgb(43, 97, 215);
+    color: white;
+    cursor: pointer;
+}
+
+.input {
+    font-family: inherit;
+    outline: none;
+}
+
+.check {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn:hover {
+    background-color: rgb(95, 132, 211);
+}
