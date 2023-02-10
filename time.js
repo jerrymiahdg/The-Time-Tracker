@@ -37,7 +37,7 @@ document.getElementsByClassName('check')[0].addEventListener('click', function()
     ) {
         document.getElementsByClassName('task')[0].style.visibility = 'visible'
         document.getElementsByClassName('name')[0].textContent = document.getElementsByClassName('task-name')[0].value
-        document.getElementsByClassName('time')[0].textContent = `${document.getElementsByClassName('hour-start')[0].value}:${document.getElementsByClassName('minute-start')[0].value} ${document.getElementsByClassName('ampm-start')[0].textContent} - ${document.getElementsByClassName('hour-end')[0].value}:${document.getElementsByClassName('minute-end')[0].value} ${document.getElementsByClassName('ampm-end')[0].textContent}`
+        document.getElementsByClassName('time')[0].textContent = `${(Number(document.getElementsByClassName('hour-start')[0].value)*10)/10}:${document.getElementsByClassName('minute-start')[0].value} ${document.getElementsByClassName('ampm-start')[0].textContent} - ${(Number(document.getElementsByClassName('hour-end')[0].value)*10)/10}:${document.getElementsByClassName('minute-end')[0].value} ${document.getElementsByClassName('ampm-end')[0].textContent}`
         document.getElementsByClassName('minute-start')[0].value = ''
         document.getElementsByClassName('hour-start')[0].value = ''
         document.getElementsByClassName('minute-end')[0].value = ''
@@ -60,6 +60,10 @@ document.getElementsByClassName('delete')[0].addEventListener('click', function(
     }
 })
 
-//let clone = document.getElementsByClassName('task').cloneNode(true);
-//clone.class = 'task2';
-//document.getElementsByClassName('task').after(clone);
+minute = function(min) {
+    if(Number(document.getElementsByClassName(min)[0].value) <= 9 && document.getElementsByClassName(min)[0].value.length <= 1) {
+        return `0${document.getElementsByClassName(min)[0].value}`
+    } else {
+        return document.getElementsByClassName(min)[0].value
+    }
+}
