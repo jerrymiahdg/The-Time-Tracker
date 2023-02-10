@@ -8,10 +8,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.time {
+.title {
     font-size: 75px;
     color:rgb(255, 255, 255);
-
     font-style: italic;
     padding-right: 5px;
     margin-right:5px;
@@ -22,6 +21,7 @@ header {
     background-color: blueviolet;
     padding: 25px;
     color: rgb(255, 255, 255);
+    font-size: 25px;
 }
 
 .task-input {
@@ -103,4 +103,24 @@ header {
 
 .btn:hover {
     background-color: rgb(95, 132, 211);
+}
+
+.task {
+    margin: 25px;
+    padding: 10px;
+    background-color: yellow;
+    border-radius: 10px;
+}
+
+.name {
+    display: block;
+    color: black;
+    font-size: 25px;
+}
+
+.time {
+    color: black;
+    font-size: 25px;
+    text-align: right;
+    font-style: normal;
 }
