@@ -67,3 +67,13 @@ minute = function(min) {
         return document.getElementsByClassName(min)[0].value
     }
 }
+
+document.getElementsByClassName('close')[0].addEventListener('click', function() {
+    if(document.getElementsByClassName('task-input')[0].style.display == 'block') {
+        document.getElementsByClassName('task-input')[0].style.display = 'none'
+        document.getElementsByClassName('close')[0].textContent = 'v'
+    } else {
+        document.getElementsByClassName('task-input')[0].style.display = 'block'
+        document.getElementsByClassName('close')[0].textContent = '^'
+    }
+})
