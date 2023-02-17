@@ -1,142 +1,71 @@
 'use strict'
 
-let timeStartHour
-let timeStartMinute
-let timeEndHour
-let timeEndMinute
-let ampmStart
-let ampmEnd
-let editing
-let numberOfTasks = 0
-
+var ampmStart = document.getElementsByClassName('ampm-start')[0]
+var ampmEnd = document.getElementsByClassName('ampm-end')[0]
+var check = document.getElementsByClassName('check')[0]
+var taskInput = document.getElementsByClassName('task-input')[0]
+var taskName = document.getElementsByClassName('time-name')[0]
+var timeStart = document.getElementsByClassName('time-start')[0]
+var timeEnd = document.getElementsByClassName('time-end')[0]
+var hourStart = document.getElementsByClassName('hour-start')[0]
+var minuteStart = document.getElementsByClassName('minute-start')[0]
+var hourEnd = document.getElementsByClassName('hour-end')[0]
+var minuteEnd = document.getElementsByClassName('minute-end')[0]
+var timeChart = document.getElementsByClassName('time-chart')[0]
+var task = document.getElementsByClassName('task')[0]
+var name = document.getElementsByClassName('name')[0]
+var time = document.getElementsByClassName('time')[0]
+var dlt = document.getElementsByClassName('delete')[0]
+var edit = document.getElementsByClassName('edit')[0]
 const taskArray = []
 const nameArray = []
 const timeArray = []
+const dltArray = []
 const editArray = []
-const deleteArray = []
+const hourStartArray = []
+const minuteStartArray = []
+const hourEndArray = []
+const minuteEndArray = []
 
-document.getElementsByClassName('og-task')[0].style.display = 'none'
-document.getElementsByClassName('minute-start')[0].value = ''
-document.getElementsByClassName('hour-start')[0].value = ''
-document.getElementsByClassName('minute-end')[0].value = ''
-document.getElementsByClassName('hour-end')[0].value = ''
-document.getElementsByClassName('task-input')[0].style.display = 'block'
+ampmStart.addEventListener('click', ampm(ampmStart))
+ampmEnd.addEventListener('click', ampm(ampmEnd))
+task.style.display = 'none'
 
-document.getElementsByClassName('ampm-start')[0].addEventListener('click', function() {
-    if(document.getElementsByClassName('ampm-start')[0].textContent == 'AM') {
-        document.getElementsByClassName('ampm-start')[0].textContent = 'PM'
-    } else {
-        document.getElementsByClassName('ampm-start')[0].textContent = 'AM'
-    }
-})
+function ampm(i) {
+    return function() {
+    if(i.textContent == 'AM') {
+        i.textContent = 'PM'
+    } else {i.textContent = 'AM'}}
+}
 
-document.getElementsByClassName('ampm-end')[0].addEventListener('click', function() {
-    if(document.getElementsByClassName('ampm-end')[0].textContent == 'AM') {
-        document.getElementsByClassName('ampm-end')[0].textContent = 'PM'
-    } else {
-        document.getElementsByClassName('ampm-end')[0].textContent = 'AM'
-    }
-})
-document.getElementsByClassName('task')[0].style.visibility = 'hidden'
-
-document.getElementsByClassName('check')[0].addEventListener('click', function() {
-    if(
-        Number(document.getElementsByClassName('minute-start')[0].value) >= 0 &&
-        Number(document.getElementsByClassName('hour-start')[0].value) >= 1 &&
-        Number(document.getElementsByClassName('minute-end')[0].value) >= 0 &&
-        Number(document.getElementsByClassName('hour-end')[0].value) >= 1 &&
-        Number(document.getElementsByClassName('minute-start')[0].value) <= 59 &&
-        Number(document.getElementsByClassName('hour-start')[0].value) <= 12 &&
-        Number(document.getElementsByClassName('minute-end')[0].value) <= 59 &&
-        Number(document.getElementsByClassName('hour-end')[0].value) <= 12 &&
-        document.getElementsByClassName('task-name')[0].value
-    ) {
-        document.getElementsByClassName('task')[0].style.visibility = 'visible'
-        timeStartHour = document.getElementsByClassName('hour-start')[0].value
-        timeStartMinute = noZero('minute-start')
-        timeEndHour = document.getElementsByClassName('hour-end')[0].value
-        timeEndMinute = noZero('minute-end')
-        ampmStart = document.getElementsByClassName('ampm-start')[0].textContent
-        ampmEnd = document.getElementsByClassName('ampm-end')[0].textContent
-        
-        
+check.addEventListener('click', function() {
+    if(taskName.value !== '' && Number(hourStart.value) < 12 && Number(minuteStart.value) < 60 && Number(hourEnd.value) < 12 && Number(minuteEnd.value) < 60) {
         taskArray.push(document.createElement('div'))
-        nameArray.push(document.createElement('p'))
+        taskArray[taskArray.length - 1].className = 'taskInput'
+        nameArray.push(document.createElemenet('p'))
+        nameArray[nameArray.length - 1].className = 'name'
+        nameArray[nameArray.length - 1].textContent = taskName.value
         timeArray.push(document.createElement('p'))
+        hourStartArray.push(hourStart.value)
+        minuteStartArray.push(minuteStart.value)
+        hourEndArray.push(hourEndStart.value)
+        minuteEndArray.push(minuteEndStart.value)
+        timeArray[timeArray.length - 1].className = 'time'
+        timeArray[timeArray.length - 1].textContent = `${hourStart.value}:${minuteStart.value} - ${hourEnd.value}:${minuteEnd.value}`
+        dltArray.push(document.createElement('button'))
+        dltArray[dltArray.length - 1].className = 'delete'
         editArray.push(document.createElement('button'))
-        deleteArray.push(document.createElement('button'))
-        
-        taskArray[taskArray.length - 1].className = ('task')
-        nameArray[nameArray.length - 1].className = ('name')
-        timeArray[timeArray.length - 1].className = ('time')
-        editArray[editArray.length - 1].className = ('btn edit')
-        deleteArray[deleteArray.length - 1].className = ('delete')
-        
-
-        taskArray[taskArray.length - 1].appendChild(nameArray[nameArray.length - 1])
-        taskArray[taskArray.length - 1].appendChild(timeArray[timeArray.length - 1])
-        taskArray[taskArray.length - 1].appendChild(editArray[editArray.length - 1])
-        taskArray[taskArray.length - 1].appendChild(deleteArray[deleteArray.length - 1])
-
-        document.getElementsByClassName('time-chart')[0].appendChild(taskArray[taskArray.length - 1])
-        
-        editArray[editArray.length - 1].innerHTML = 'Edit';
-        deleteArray[deleteArray.length - 1].innerHTML = 'X';
-
-        nameArray[nameArray.length - 1].innerHTML = document.getElementsByClassName('task-name')[0].value;
-        timeArray[timeArray.length - 1].innerHTML = `${(Number(document.getElementsByClassName('hour-start')[0].value)*10)/10}:${noZero('minute-start')} ${document.getElementsByClassName('ampm-start')[0].textContent} - ${(Number(document.getElementsByClassName('hour-end')[0].value)*10)/10}:${noZero('minute-end')} ${document.getElementsByClassName('ampm-end')[0].textContent}`;
-
-        document.getElementsByClassName('minute-start')[0].value = ''
-        document.getElementsByClassName('hour-start')[0].value = ''
-        document.getElementsByClassName('minute-end')[0].value = ''
-        document.getElementsByClassName('hour-end')[0].value = ''
-        document.getElementsByClassName('task-name')[0].value = ''
-    }
-    if(document.getElementsByClassName('check')[0].textContent == 'Edit Task') {
-        document.getElementsByClassName('check')[0].textContent = 'Add Task'
+        editArray[editArray.length - 1].className = 'edit'
+        editFunc(taskArray.length - 1)
     }
 })
 
-document.getElementsByClassName('edit')[0].addEventListener('click', function() {
-    
-    if(document.getElementsByClassName('task')[0].style.visibility == 'visible') {
-        if(document.getElementsByClassName('task-input')[0].style.display == 'hidden') {
-            document.getElementsByClassName('task-input')[0].style.display = 'block'
-            document.getElementsByClassName('close')[0].textContent = '^'
-        }
-        document.getElementsByClassName('check')[0].textContent = 'Edit Task'
-        document.getElementsByClassName('task-name')[0].value = document.getElementsByClassName('name')[0].textContent
-        document.getElementsByClassName('hour-start')[0].value = (Number(timeStartHour)/10)*10 
-        document.getElementsByClassName('minute-start')[0].value = timeStartMinute 
-        document.getElementsByClassName('hour-end')[0].value = (Number(timeStartHour)/10)*10
-        document.getElementsByClassName('minute-end')[0].value = timeEndMinute
-        document.getElementsByClassName('ampm-start')[0].textContent = ampmStart
-        document.getElementsByClassName('ampm-end')[0].textContent = ampmEnd
-    }
-})
-
-document.getElementsByClassName('delete')[0].addEventListener('click', function() {
-    if(document.getElementsByClassName('task')[0].style.visibility == 'visible') {
-        document.getElementsByClassName('task')[0].style.visibility = 'hidden'
-        document.getElementsByClassName('name')[0].textContent = ''
-        document.getElementsByClassName('time')[0].textContent = ''
-    }
-})
-
-document.getElementsByClassName('close')[0].addEventListener('click', function() {
-    if(document.getElementsByClassName('task-input')[0].style.display == 'block') {
-        document.getElementsByClassName('task-input')[0].style.display = 'none'
-        document.getElementsByClassName('close')[0].textContent = 'v'
-    } else {
-        document.getElementsByClassName('task-input')[0].style.display = 'block'
-        document.getElementsByClassName('close')[0].textContent = '^'
-    }
-})
-
-const noZero = function(min) {
-    if(document.getElementsByClassName(min)[0].value.length == 1 && Number(document.getElementsByClassName(min)[0].value) <= 9) {
-        return `0${document.getElementsByClassName(min)[0].value}`
-    } else { 
-        return document.getElementsByClassName(min)[0].value
-    }
+function editFunc(i) {
+    return function() {editArray[i].addEventListener('click', function() {
+        taskName.value = nameArray[i]
+        hourStart.value = hourStartArray[i]
+        minuteStart.value = minuteStartArray[i]
+        hourEnd.value = hourStartArray[i]
+        minuteEnd.value = minuteEndArray[i]
+    })}
 }
