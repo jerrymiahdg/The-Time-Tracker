@@ -8,24 +8,26 @@
     <link rel="stylesheet" href="time.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>The <a class="title">Time </a> Tracker</h1>
+        <h1>The Time Tracker</h1>
     </header>
     <div class="task-input">
-        <label for = 'task-name'>Task Name:</label> <input type="text" class="input task-name" name="task-name"/> <br>
-        <label for = 'time-start'>Time Start:</label> <span class="start-input"> <input type="tel" class="input time-start hour-start" name="input time-start hour-start" maxlength="2"/> <a>:</a> <input type="tel" class="input time-start minute-start" name="time-start minute-start" maxlength="2"/> </span> <button class="btn ampm-start" type="button">AM</button>  <br> 
-        <label for = 'time-end'>Time End:</label> <span class="start-input"> <input type="tel" class="input time-end hour-end" name="time-end hour-end" maxlength="2"/> <a>:</a> <input type="tel" class="input time-end minute-end" name="time-end minute-end" maxlength="2"/> </span> <button class="btn ampm-end" type="button">AM</button> <br>
-        <button class="btn check" type="button">Add Task</button>
+        <label for = 'task-name'>Name:</label> <input type="text" class="input task-name" name="task-name"/> <br>
+        <label for = 'time-start'>Start:</label> <span class="start-input"> <input type="tel" class="input time-start hour-start" name="input time-start hour-start" maxlength="2"/> <a>:</a> <input type="tel" class="input time-start minute-start" name="time-start minute-start" maxlength="2"/> </span> <button class="btn ampm-start" type="button">AM</button>  <br> 
+        <label for = 'time-end'>End:</label> <span class="start-input"> <input type="tel" class="input time-end hour-end" name="time-end hour-end" maxlength="2"/> <a>:</a> <input type="tel" class="input time-end minute-end" name="time-end minute-end" maxlength="2"/> </span> <button class="btn ampm-end" type="button">AM</button> <br>
+        <button class="btn-2 check" type="button">Add Task</button>
     </div>
     <button class="close" type="button">^</button>
     <div class="time-chart">
         <div class="task og-task">
             <p class="name"> </p> 
-            <p class="time"></p> <button class="delete" type="button">X</button> <button class="btn edit" type="button">Edit</button>
+            <p class="time"></p> <button class="delete" type="button">X</button> <button class="btn-2 edit" type="button">Edit</button>
         </div>
     </div>
     <script src="time.js"></script>
