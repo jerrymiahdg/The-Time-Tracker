@@ -95,6 +95,8 @@ check.addEventListener('click', function() {
             hourEndArray[editing.number] = (Number(hourEnd.value)*10)/10
             minuteEndArray[editing.number] = (minute(minuteEnd))
             timeArray[editing.number].textContent = `${(Number(hourStart.value)*10)/10}:${minute(minuteStart)} - ${(Number(hourEnd.value)*10)/10}:${minute(minuteEnd)}`
+            editing.boolean = false
+            check.textContent = 'Add Task'
         }
         taskName.value = ''
         hourStart.value = ''
